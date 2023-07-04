@@ -7,5 +7,11 @@ get '/memo' do
 end
 
 get '/memo/new' do
-  'memo new'
+  erb :memo_new
+end
+
+post '/memo/new' do
+  tytle = params[:tytle]
+  content = params[:content]
+  "タイトル：#{tytle}<br>内容：#{content}"
 end
