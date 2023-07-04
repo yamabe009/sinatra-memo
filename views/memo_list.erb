@@ -10,10 +10,9 @@
   <h1>メモアプリ</h1>
   <button onclick="location.href='/memo/new'">追加</button>
   <ul>
-    <li type="disc">メモ1</li>
-    <li type="disc">メモ2</li>
-    <li type="disc">メモ3</li>
-    <li type="disc">メモ4</li>
+    <% @list.each do |item| %>
+      <li type="disc">メモ<%= item %></li>
+    <% end %>
   </ul>
 </body>
 

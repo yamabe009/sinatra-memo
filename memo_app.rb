@@ -3,6 +3,7 @@
 require 'sinatra'
 
 get '/memo' do
+  @list = (1..5)
   erb :memo_list
 end
 
