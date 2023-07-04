@@ -3,7 +3,8 @@
 require 'sinatra'
 
 get '/memo' do
-  @list = (1..5)
+  file = File.open('memo/memo.json')
+  @list = JSON.parse(file.read, symbolize_names: true)
   erb :memo_list
 end
 

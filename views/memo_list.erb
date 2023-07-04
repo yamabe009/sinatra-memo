@@ -11,7 +11,7 @@
   <button onclick="location.href='/memo/new'">追加</button>
   <ul>
     <% @list.each do |item| %>
-      <li type="disc">メモ<%= item %></li>
+      <li type="disc"><%= item[:title] %></li>
     <% end %>
   </ul>
 </body>
