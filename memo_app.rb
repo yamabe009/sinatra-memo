@@ -11,7 +11,8 @@ get '/memo/new' do
 end
 
 post '/memo/new' do
-  tytle = params[:tytle]
-  content = params[:content]
-  "タイトル：#{tytle}<br>内容：#{content}"
+  @title = params[:title]
+  @content = params[:content]
+  @status_msg = '登録しました'
+  erb :memo_saved
 end
