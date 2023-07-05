@@ -8,7 +8,7 @@
 
 <body>
   <h1>メモアプリ</h1>
-    <form method="post" action="/memo/new">
+    <form method="post" action="/memo/<%= @item[:id] %>">
         <div class="form-items">
           <div class="form-items__item">
             <label>タイトル</label>

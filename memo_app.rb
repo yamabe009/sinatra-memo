@@ -31,3 +31,17 @@ get '/memo/:id' do
   @item = list.find { |i| i[:id] == params['id'].to_i }
   erb :memo_details
 end
+
+post '/memo/:id' do
+  list = JSON.parse(File.read('memo/memo.json'), symbolize_names: true)
+  item = list.find { |i| i[:id] == params['id'].to_i }
+  item[:title] = params[:title]
+  item[:content] = params[:content]
+  File.write('memo/memo.json', list.to_json)
+
+  @id = item[:id]
+  @title = item[:title]
+  @content = item[:content]
+  @status_msg = '変更しました'
+  erb :memo_saved
+end
