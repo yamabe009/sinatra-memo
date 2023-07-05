@@ -3,8 +3,7 @@
 require 'sinatra'
 
 get '/memo' do
-  file = File.open('memo/memo.json')
-  @list = JSON.parse(file.read, symbolize_names: true)
+  @list = JSON.parse(File.read('memo/memo.json'), symbolize_names: true)
   erb :memo_list
 end
 
@@ -13,6 +12,13 @@ get '/memo/new' do
 end
 
 post '/memo/new' do
+  list = JSON.parse(File.read('memo/memo.json'), symbolize_names: true)
+  next_id = list.max { |i| i[:id] }[:id] + 1
+  list.push({ id: next_id, title: params[:title], content: params[:content] })
+  p list
+  File.write('memo/memo.json', list.to_json)
+
+  @id = next_id
   @title = params[:title]
   @content = params[:content]
   @status_msg = '登録しました'
