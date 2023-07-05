@@ -8,21 +8,15 @@
 
 <body>
   <h1>メモアプリ</h1>
-    <form method="post" action="/memo/<%= @item[:id] %>">
-        <div class="form-items">
-          <div class="form-items__item">
-            <label>タイトル</label>
-            <input name="title" type="text" value="<%= @item[:title] %>">
-          </div>
-          <div class="form-items__item">
-            <label>内容</label>
-            <textarea name="content"><%= @item[:content] %></textarea>
-          </div>
-        </div>
-        <div class="form-action">
-          <input type="submit" value="変更">
-        </div>
-      </form>
+  <section>
+    <h2><%= @item[:title] %></h2>
+    <p><%= @item[:content] %></p>
+  </section>
+  <button onclick="location.href='/memo/<%= @item[:id] %>/edit'">変更</button>
+  <form method="post" action="/memo/<%= @item[:id] %>">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="削除">
+  </form>
 </body>
 
 </html>

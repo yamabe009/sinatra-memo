@@ -32,6 +32,20 @@ get '/memo/:id' do
   erb :memo_details
 end
 
+get '/memo/:id/edit' do
+  file = File.open('memo/memo.json')
+  list = JSON.parse(file.read, symbolize_names: true)
+  @item = list.find { |i| i[:id] == params['id'].to_i }
+  erb :memo_edit
+end
+
+delete '/memo/:id' do
+  list = JSON.parse(File.read('memo/memo.json'), symbolize_names: true)
+  list.delete_if { |i| i[:id] == params['id'].to_i }
+  File.write('memo/memo.json', list.to_json)
+  puts '削除しました'
+end
+
 post '/memo/:id' do
   list = JSON.parse(File.read('memo/memo.json'), symbolize_names: true)
   item = list.find { |i| i[:id] == params['id'].to_i }

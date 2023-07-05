@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>メモアプリ</title>
+</head>
+
+<body>
+  <h1>メモアプリ</h1>
+    <form method="post" action="/memo/<%= @item[:id] %>">
+        <div class="form-items">
+          <div class="form-items__item">
+            <label>タイトル</label>
+            <input name="title" type="text" value="<%= @item[:title] %>">
+          </div>
+          <div class="form-items__item">
+            <label>内容</label>
+            <textarea name="content"><%= @item[:content] %></textarea>
+          </div>
+        </div>
+        <div class="form-action">
+          <input type="submit" value="変更">
+        </div>
+      </form>
+</body>
+
+</html>
