@@ -18,11 +18,7 @@ post '/memo/new' do
   p list
   File.write('memo/memo.json', list.to_json)
 
-  @id = next_id
-  @title = params[:title]
-  @content = params[:content]
-  @status_msg = '登録しました'
-  erb :memo_saved
+  redirect '/memo'
 end
 
 get '/memo/:id' do
@@ -43,7 +39,8 @@ delete '/memo/:id' do
   list = JSON.parse(File.read('memo/memo.json'), symbolize_names: true)
   list.delete_if { |i| i[:id] == params['id'].to_i }
   File.write('memo/memo.json', list.to_json)
-  puts '削除しました'
+
+  redirect '/memo'
 end
 
 post '/memo/:id' do
@@ -53,9 +50,5 @@ post '/memo/:id' do
   item[:content] = params[:content]
   File.write('memo/memo.json', list.to_json)
 
-  @id = item[:id]
-  @title = item[:title]
-  @content = item[:content]
-  @status_msg = '変更しました'
-  erb :memo_saved
+  redirect "/memo/#{params['id']}"
 end
