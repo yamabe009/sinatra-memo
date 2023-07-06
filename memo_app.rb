@@ -58,3 +58,7 @@ patch '/memo/:id' do
 
   redirect "/memo/#{params['id']}"
 end
+
+not_found do
+  '404 not found'
+end
