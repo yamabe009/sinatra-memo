@@ -1,9 +1,12 @@
 <section>
-<h2><%== @item[:title] %></h2>
+  <h2><%== @item[:title] %></h2>
   <p><%== @item[:content] %></p>
 </section>
-<button onclick="location.href='/memo/<%= @item[:id] %>/edit'">変更</button>
+
 <form method="post" action="/memo/<%= @item[:id] %>">
-  <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="削除">
+  <a class="button" href='/memo/<%= @item[:id] %>/edit'>変更</a>
+  <div class="form-action button-right">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="削除">
+  </div>
 </form>
