@@ -9,8 +9,8 @@
 <body>
   <h1>メモアプリ</h1>
   <section>
-    <h2><%= @item[:title] %></h2>
-    <p><%= @item[:content] %></p>
+    <h2><%== @item[:title] %></h2>
+    <p><%== @item[:content] %></p>
   </section>
   <button onclick="location.href='/memo/<%= @item[:id] %>/edit'">変更</button>
   <form method="post" action="/memo/<%= @item[:id] %>">

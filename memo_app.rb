@@ -2,6 +2,12 @@
 
 require 'sinatra'
 
+helpers do
+  def h(text)
+    Rack::Utils.escape_html(text)
+  end
+end
+
 get '/memo' do
   @list = JSON.parse(File.read('memo/memo.json'), symbolize_names: true)
   erb :memo_list
