@@ -1,19 +1,6 @@
-<!DOCTYPE html>
-<html lang="ja">
-
-<head>
-  <meta charset="UTF-8">
-  <title>メモアプリ</title>
-</head>
-
-<body>
-  <h1>メモアプリ</h1>
-  <button onclick="location.href='/memo/new'">追加</button>
-  <ul>
-    <% @list.each do |item| %>
-      <li type="disc"><a href="/memo/<%= item[:id] %>"><%== item[:title] %></a></li>
-    <% end %>
-  </ul>
-</body>
-
-</html>
+<button onclick="location.href='/memo/new'">追加</button>
+<ul>
+  <% @list.each do |item| %>
+    <li type="disc"><a href="/memo/<%= item[:id] %>"><%== item[:title] %></a></li>
+  <% end %>
+</ul>

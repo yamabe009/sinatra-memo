@@ -1,22 +1,9 @@
-<!DOCTYPE html>
-<html lang="ja">
-
-<head>
-  <meta charset="UTF-8">
-  <title>メモアプリ</title>
-</head>
-
-<body>
-  <h1>メモアプリ</h1>
-  <section>
-    <h2><%== @item[:title] %></h2>
-    <p><%== @item[:content] %></p>
-  </section>
-  <button onclick="location.href='/memo/<%= @item[:id] %>/edit'">変更</button>
-  <form method="post" action="/memo/<%= @item[:id] %>">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="削除">
-  </form>
-</body>
-
-</html>
+<section>
+<h2><%== @item[:title] %></h2>
+  <p><%== @item[:content] %></p>
+</section>
+<button onclick="location.href='/memo/<%= @item[:id] %>/edit'">変更</button>
+<form method="post" action="/memo/<%= @item[:id] %>">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="削除">
+</form>
