@@ -43,7 +43,7 @@ delete '/memo/:id' do
   redirect '/memo'
 end
 
-post '/memo/:id' do
+patch '/memo/:id' do
   list = JSON.parse(File.read('memo/memo.json'), symbolize_names: true)
   item = list.find { |i| i[:id] == params['id'].to_i }
   item[:title] = params[:title]
