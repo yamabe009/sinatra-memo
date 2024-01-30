@@ -19,11 +19,7 @@ end
 
 post '/memo/new' do
   list = JSON.parse(File.read('memo/memo.json'), symbolize_names: true)
-  next_id = 1
-  if list.empty? then
-
-  end
-  next_id = list.empty? ? 1 : ( list.max { |i| i[:id] }[:id] + 1 )
+  next_id = list.empty? ? 1 : (list.max { |i| i[:id] }[:id] + 1)
   list.push({ id: next_id, title: params[:title], content: params[:content] })
   p list
   File.write('memo/memo.json', list.to_json)
