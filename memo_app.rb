@@ -9,7 +9,7 @@ helpers do
 end
 
 get '/memo' do
-  @list = JSON.parse(File.read('memo/memo.json'), symbolize_names: true)
+  @list = read_memo_list
   erb :memo_list
 end
 
@@ -18,7 +18,7 @@ get '/memo/new' do
 end
 
 post '/memo/new' do
-  list = JSON.parse(File.read('memo/memo.json'), symbolize_names: true)
+  list = read_memo_list
   next_id = list.empty? ? 1 : (list.max { |i| i[:id] }[:id] + 1)
   list.push({ id: next_id, title: params[:title], content: params[:content] })
   p list
@@ -28,21 +28,19 @@ post '/memo/new' do
 end
 
 get '/memo/:id' do
-  file = File.open('memo/memo.json')
-  list = JSON.parse(file.read, symbolize_names: true)
+  list = read_memo_list
   @item = list.find { |i| i[:id] == params['id'].to_i }
   erb :memo_details
 end
 
 get '/memo/:id/edit' do
-  file = File.open('memo/memo.json')
-  list = JSON.parse(file.read, symbolize_names: true)
+  list = read_memo_list
   @item = list.find { |i| i[:id] == params['id'].to_i }
   erb :memo_edit
 end
 
 delete '/memo/:id' do
-  list = JSON.parse(File.read('memo/memo.json'), symbolize_names: true)
+  list = read_memo_list
   list.delete_if { |i| i[:id] == params['id'].to_i }
   File.write('memo/memo.json', list.to_json)
 
@@ -50,7 +48,7 @@ delete '/memo/:id' do
 end
 
 patch '/memo/:id' do
-  list = JSON.parse(File.read('memo/memo.json'), symbolize_names: true)
+  list = read_memo_list
   item = list.find { |i| i[:id] == params['id'].to_i }
   item[:title] = params[:title]
   item[:content] = params[:content]
@@ -61,4 +59,8 @@ end
 
 not_found do
   '404 not found'
+end
+
+def read_memo_list
+  JSON.parse(File.read('memo/memo.json'), symbolize_names: true)
 end
