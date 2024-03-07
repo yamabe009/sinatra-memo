@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 require 'sinatra'
+require 'erb'
+include ERB::Util
 
 helpers do
   def h(text)
-    Rack::Utils.escape_html(text)
+    escape_html(text)
   end
 end
 
