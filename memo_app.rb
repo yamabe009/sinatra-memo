@@ -64,5 +64,8 @@ not_found do
 end
 
 def read_memo_list
-  JSON.parse(File.read('memo/memo.json'), symbolize_names: true)
+  if !File.exist?('memo/memo.json')
+    File.write('memo/memo.json', [])
+  end
+  JSON.parse(File.read('memo/memo.json'), symbolize_names: true) 
 end
