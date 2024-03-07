@@ -1,0 +1,290 @@
+/*
+////////////////////////////////////////
+reset.css を読み込んで全てのスタイルをなくす
+////////////////////////////////////////
+*/
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/*
+////////////////////////////////////////
+reset.css では足りない初期化を追加
+////////////////////////////////////////
+*/
+
+/* 全てに box-sizing: border-box; を適用 */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+/* 画像に関する初期設定 */
+img {
+  /* 大きい画像がはみ出さないように */
+  max-width: 100%;
+  /* 画像周りの無駄なスペースができないように */
+  vertical-align: bottom;
+}
+
+[data-whatinput="mouse"] *:focus,
+[data-whatinput="touch"] *:focus {
+  outline: none;
+}
+
+/*
+////////////////////////////////////////
+初期設定
+////////////////////////////////////////
+*/
+
+body {
+  padding: 32px 0;
+  color: #56564f;
+}
+
+main {
+  width: 640px;
+  margin: 0 auto;
+}
+
+/*
+////////////////////////////////////////
+以下に自分なりのCSSを書いて読みやすくする
+////////////////////////////////////////
+*/
+
+body {
+  background-color: #e9e9e9;
+}
+
+main {
+  padding: 25px 35px;
+  background-color: #ffffff;
+}
+
+h1, h2 {
+  color: #1b435d;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 2em;
+  text-align: center;
+}
+
+h2 {
+  margin: 20px 0px 10px 0px;
+  padding: 1px 10px;
+  border-bottom: dashed 2px #78bbe6;
+  background-color: #d5eeff;
+  font-size: 1.5em;
+}
+
+div.button-right {
+  float: right;
+  text-align: right;
+}
+
+div.button-center {
+  text-align: center;
+}
+
+a.button,
+.form-action input[type="submit"] 
+{
+  display: inline-block;
+  margin: 5px;
+  padding: 0.5em 5em;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  background-color: #78bbe6;
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+a.button:hover,
+.form-action input[type="submit"]:hover
+{
+  background-color: #5e93b5;
+}
+
+p,
+ul,
+ol {
+  margin: 10px 0px;
+  line-height: 1.8;
+}
+
+ul {
+  margin-left: 30px;
+  list-style-type: disc;
+}
+
+/*
+////////////////////////////////////////
+入力フォーム
+////////////////////////////////////////
+*/
+div.form-items {
+  margin: 20px 0px;
+}
+
+div.form-items__item {
+  margin: 12px 0px;
+}
+
+.form-items__item label {
+  display: inline-block;
+  width: 110px;
+  padding-right: 8px;
+  text-align: right;
+  vertical-align: middle;
+  font-weight: bold;
+}
+
+.form-items__item input[type="text"],
+textarea {
+  width: calc(100% - 150px);
+  padding: 0.5em;
+  border: solid 1px #d3d3d3;
+  border-radius: 3px;
+  outline-color: #78bbe6;
+  vertical-align: middle;
+}
+
+.form-items__item textarea {
+  height: 8em;
+}
