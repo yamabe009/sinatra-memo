@@ -4,7 +4,7 @@
 </section>
 
 <form method="post" action="/memo/<%= @item[:id] %>">
-  <a class="button" href='/memo/<%= @item[:id] %>/edit'>変更</a>
+  <a class="button" href="/memo/<%= @item[:id] %>/edit">変更</a>
   <div class="form-action button-right">
     <input type="hidden" name="_method" value="DELETE">
     <input type="submit" value="削除">
