@@ -1,6 +1,6 @@
 <section>
-  <h2><%= @item[:title] %></h2>
-  <p><%= @item[:content] %></p>
+  <h2><%= h(@item[:title]) %></h2>
+  <p><%= h(@item[:content]) %></p>
 </section>
 
 <form method="post" action="/memo/<%= @item[:id] %>">
