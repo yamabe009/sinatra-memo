@@ -3,10 +3,12 @@
   <p><%= h(@item[:content]) %></p>
 </section>
 
-<form method="post" action="/memo/<%= @item[:id] %>">
-  <a class="button" href="/memo/<%= @item[:id] %>/edit">変更</a>
-  <div class="form-action button-right">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="削除">
-  </div>
-</form>
+<a class="button" href="/memo/<%= @item[:id] %>/edit">変更</a>
+<div class="button-right">
+  <form method="post" action="/memo/<%= @item[:id] %>">
+    <div class="form-action">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="削除">
+    </div>
+  </form>
+</div>

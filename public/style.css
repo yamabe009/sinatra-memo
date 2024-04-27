@@ -189,6 +189,7 @@ body {
 main {
   padding: 25px 35px;
   background-color: #ffffff;
+  min-height: 90px;
 }
 
 h1, h2 {
@@ -213,7 +214,9 @@ h2 {
 
 div.button-right {
   float: right;
-  text-align: right;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-end;
 }
 
 div.button-center {
@@ -233,6 +236,11 @@ a.button,
   text-decoration: none;
   font-size: 1em;
   font-weight: bold;
+}
+
+.form-action input[type="submit"] 
+{
+  padding: 0.27em 5em;
 }
 
 a.button:hover,
