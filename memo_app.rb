@@ -11,7 +11,7 @@ helpers do
 end
 
 get '/memo' do
-  @list = read_memo_list
+  @memos = read_memos
   erb :memo_list
 end
 
@@ -20,39 +20,39 @@ get '/memo/new' do
 end
 
 post '/memo/new' do
-  list = read_memo_list
-  list.push(id: SecureRandom.uuid, title: params[:title], content: params[:content])
-  write_memo_list(list)
+  memos = read_memos
+  memos.push(id: SecureRandom.uuid, title: params[:title], content: params[:content])
+  write_memos(memos)
 
   redirect '/memo'
 end
 
 get '/memo/:id' do
-  list = read_memo_list
-  @item = get_item(list, params['id'])
+  memos = read_memos
+  @memo = get_memo(memos, params['id'])
   erb :memo_details
 end
 
 get '/memo/:id/edit' do
-  list = read_memo_list
-  @item = get_item(list, params['id'])
+  memos = read_memos
+  @memo = get_memo(memos, params['id'])
   erb :memo_edit
 end
 
 delete '/memo/:id' do
-  list = read_memo_list
-  list.delete_if { |item| item[:id] == params['id'] }
-  write_memo_list(list)
+  memos = read_memos
+  memos.delete_if { |memo| memo[:id] == params['id'] }
+  write_memos(memos)
 
   redirect '/memo'
 end
 
 patch '/memo/:id' do
-  list = read_memo_list
-  item = get_item(list, params['id'])
-  item[:title] = params[:title]
-  item[:content] = params[:content]
-  write_memo_list(list)
+  memos = read_memos
+  memo = get_memo(memos, params['id'])
+  memo[:title] = params[:title]
+  memo[:content] = params[:content]
+  write_memos(memos)
 
   redirect "/memo/#{params['id']}"
 end
@@ -61,15 +61,15 @@ not_found do
   '404 not found'
 end
 
-def read_memo_list
-  write_memo_list([]) if !File.exist?('memo/memo.json')
+def read_memos
+  write_memos([]) if !File.exist?('memo/memo.json')
   JSON.parse(File.read('memo/memo.json'), symbolize_names: true)
 end
 
-def write_memo_list(list)
-  File.write('memo/memo.json', list.to_json)
+def write_memos(memos)
+  File.write('memo/memo.json', memos.to_json)
 end
 
-def get_item(list, id)
-  list.find { |item| item[:id] == id }
+def get_memo(memos, id)
+  memos.find { |memo| memo[:id] == id }
 end
