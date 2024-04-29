@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'debug'
 require 'sinatra'
 require 'erb'
 require 'securerandom'
@@ -21,7 +22,8 @@ end
 
 post '/memo/new' do
   memos = read_memos
-  memos.push(id: SecureRandom.uuid, title: params[:title], content: params[:content])
+  memo_id = SecureRandom.uuid
+  memos[memo_id] = { id: memo_id, title: params[:title], content: params[:content] }
   write_memos(memos)
 
   redirect '/memo'
@@ -29,19 +31,19 @@ end
 
 get '/memo/:id' do
   memos = read_memos
-  @memo = get_memo(memos, params['id'])
+  @memo = memos[params[:id]]
   erb :memo_details
 end
 
 get '/memo/:id/edit' do
   memos = read_memos
-  @memo = get_memo(memos, params['id'])
+  @memo = memos[params[:id]]
   erb :memo_edit
 end
 
 delete '/memo/:id' do
   memos = read_memos
-  memos.delete_if { |memo| memo[:id] == params['id'] }
+  memos.delete(params[:id])
   write_memos(memos)
 
   redirect '/memo'
@@ -49,12 +51,12 @@ end
 
 patch '/memo/:id' do
   memos = read_memos
-  memo = get_memo(memos, params['id'])
-  memo[:title] = params[:title]
-  memo[:content] = params[:content]
+  memo = memos[params[:id]]
+  memo['title'] = params[:title]
+  memo['content'] = params[:content]
   write_memos(memos)
 
-  redirect "/memo/#{params['id']}"
+  redirect "/memo/#{params[:id]}"
 end
 
 not_found do
@@ -62,14 +64,10 @@ not_found do
 end
 
 def read_memos
-  write_memos([]) if !File.exist?('memo/memo.json')
-  JSON.parse(File.read('memo/memo.json'), symbolize_names: true)
+  write_memos({}) if !File.exist?('memo/memo.json')
+  JSON.parse(File.read('memo/memo.json'))
 end
 
 def write_memos(memos)
   File.write('memo/memo.json', memos.to_json)
-end
-
-def get_memo(memos, id)
-  memos.find { |memo| memo[:id] == id }
 end
