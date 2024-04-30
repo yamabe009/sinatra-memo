@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
-require 'debug'
 require 'sinatra'
 require 'erb'
 require 'securerandom'
+
+MEMO_FILE_PATH = 'memo/memo.json'
 
 helpers do
   def h(text)
@@ -20,7 +21,7 @@ get '/memo/new' do
   erb :memo_new
 end
 
-post '/memo/new' do
+post '/memo' do
   memos = read_memos
   memo_id = SecureRandom.uuid
   memos[memo_id] = { id: memo_id, title: params[:title], content: params[:content] }
@@ -64,10 +65,10 @@ not_found do
 end
 
 def read_memos
-  write_memos({}) if !File.exist?('memo/memo.json')
-  JSON.parse(File.read('memo/memo.json'))
+  write_memos({}) if !File.exist?(MEMO_FILE_PATH)
+  JSON.parse(File.read(MEMO_FILE_PATH))
 end
 
 def write_memos(memos)
-  File.write('memo/memo.json', memos.to_json)
+  File.write(MEMO_FILE_PATH, memos.to_json)
 end
