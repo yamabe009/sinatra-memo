@@ -1,0 +1,8 @@
+<div class="button-right">
+  <a class="button" href="/memo/new">追加</a>
+</div>
+<ul>
+  <% @memos.each do |memo_id, memo| %>
+    <li type="disc"><a href="/memo/<%= memo_id %>"><%= h(memo['title']) %></a></li>
+  <% end %>
+</ul>
