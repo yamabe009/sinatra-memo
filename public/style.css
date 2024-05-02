@@ -213,14 +213,18 @@ h2 {
 }
 
 div.button-right {
-  float: right;
 	display: flex;
-	align-items: flex-start;
 	justify-content: flex-end;
 }
 
+div.button-lineup {
+	display: flex;
+	justify-content: space-between;
+}
+
 div.button-center {
-  text-align: center;
+	display: flex;
+	justify-content: center;
 }
 
 a.button,

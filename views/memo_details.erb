@@ -3,8 +3,8 @@
   <p><%= h(@memo['content']) %></p>
 </section>
 
-<a class="button" href="/memo/<%= @memo['id'] %>/edit">変更</a>
-<div class="button-right">
+<div class="button-lineup">
+  <a class="button" href="/memo/<%= @memo['id'] %>/edit">変更</a>
   <form method="post" action="/memo/<%= @memo['id'] %>">
     <div class="form-action">
       <input type="hidden" name="_method" value="DELETE">
